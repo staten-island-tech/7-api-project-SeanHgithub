@@ -5,6 +5,7 @@ def getPoke(poke):
         print("Error fetching data!")
         return None
     
+    
     data = response.json()
     return {
         "name": data["name"],
