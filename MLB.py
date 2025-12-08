@@ -1,4 +1,3 @@
-
 import requests
 
 url = "http://developer.marvel.com"
