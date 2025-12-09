@@ -1,10 +1,11 @@
 import requests
+import asyncio
+import fortnite_api
 
-url = "http://developer.marvel.com"
-headers = {
-    "Content-Type": "application/json"
-}
+async def main():
+   async with fortnite_api.Client(api_key="your_api_key"):
+      stats = await client.fetch_br_stats(name='some_username')
+      print(stats)
 
-response = requests.get(url)
-data = response.json()
-print(data)
+if __name__ == "__main__":
+   asyncio.run(main())
