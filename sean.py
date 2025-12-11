@@ -13,7 +13,7 @@ def getPoke(poke):
         "weight": data["weight"],
         "types": [t["type"]["name"] for t in data["types"]]
     }
-pokemon = getPoke("adieu")
+pokemon = getPoke("Bulbasaur")
 
 for key, value in pokemon.items():
     print(f"{key.title()}: {value}")

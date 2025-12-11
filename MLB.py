@@ -1,14 +1,22 @@
 import requests
 
-url = "https://marvel-snap-api.p.rapidapi.com/api/get-all-cards"
+def getword(word):
+    response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower()}")
+    if response.status_code != 200:
+        print("Error fetching data!")
+        return None
+    
+    
+    data = response.json()
+    return {
+        "word": data[0]["word"],
+        "definitions": [
+        d["definition"]
+        for m in data[0]["meanings"]
+        for d in m["definitions"]
+        ]
+    }
+word = getword("hello")
 
-querystring = {"page":"1"}
-
-headers = {
-	"x-rapidapi-key": "fb2044aa18msh62f0ab07b46ac36p19f523jsn9f224fb4edd3",
-	"x-rapidapi-host": "marvel-snap-api.p.rapidapi.com"
-}
-
-response = requests.get(url, headers=headers, params=querystring)
-
-print(response.json())
+for key, value in word.items():
+    print(f"{key.title()}: {value}")
