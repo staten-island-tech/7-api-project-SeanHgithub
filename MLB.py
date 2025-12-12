@@ -1,5 +1,6 @@
 import requests
-
+from tkinter import *
+window = Tk()
 def getword(word):
     response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower()}")
     if response.status_code != 200:
@@ -16,7 +17,7 @@ def getword(word):
         for d in m["definitions"]
         ]
     }
-word = getword("hello")
+word = getword("snowbunny")
 
 for key, value in word.items():
     print(f"{key.title()}: {value}")
