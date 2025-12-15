@@ -17,7 +17,7 @@ def getword(word):
         for d in m["definitions"]
         ]
     }
-word = getword("snowbunny")
+word = getword("bananas")
 
 for key, value in word.items():
     print(f"{key.title()}: {value}")
