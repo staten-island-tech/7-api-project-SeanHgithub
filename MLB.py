@@ -1,6 +1,35 @@
 import requests
-from tkinter import *
+import tkinter as tk
+window = tk.Tk()
+window.title("Word Search")
+window.geometry("1000x500")
 
+label = tk.Label(
+    window,
+    text="Hello, Tkinter!",
+    bg="lightblue",
+    fg="black",
+    font=("Arial", 14),
+    padx=10
+    pady=10
+)
+
+label.pack(
+    side="top",
+    pady=10
+)
+
+button = tk.Button(
+    window,
+    text="Click Me",
+    command=lambda: print("Button clicked!")
+)
+
+button.pack(
+    side="bottom",
+    pady=10
+)
+window.mainloop()
 def getword(word):
     response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{word.lower()}")
     if response.status_code != 200:
@@ -21,42 +50,4 @@ word = getword("banana")
 
 for key, value in word.items():
     print(f"{key.title()}: {value}")
-    window = Tk()
-window.title("Search a word")
-window.geometry("300x150")
-label = Tk.Label(
-    window,                              
-    text="Hello, Tkinter!",            
-    bg="lightblue",                    
-    fg="black",                        
-    font=("Arial", 14, "bold"),        
-    padx=10,                          
-    pady=10                            
-)
-label = Tk.Label(
-    window,                              
-    text="Hello, Tkinter!",            
-    bg="lightblue",                    
-    fg="black",                        
-    font=("Arial", 14, "bold"),        
-    padx=10,                           
-    pady=10                            
-)
-label.pack(
-    side="top",                        
-    padx=20,                           
-    pady=10                            
-)
 
-button = Tk.Button(
-    window,                              
-    text="Click Me!",                  
-    command=lambda: print("Button clicked!")  
-)
-
-button.pack(
-    side="bottom",                     
-    pady=10                            
-)
-
-window.mainloop()
