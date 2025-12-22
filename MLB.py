@@ -23,6 +23,7 @@ label.pack(
 entry = tk.Entry(window)
 entry.pack(pady=10)
 output = None
+
 def getword():
     global output
     if output is not None:
@@ -31,19 +32,18 @@ def getword():
     response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{search.lower()}")
     if response.status_code != 200:
         window.title("Error Fetching Data!")
-        return None
     data = response.json()
     window.title("Word Found!")
     word =  {
         "word": data[0]["word"],
-        "definitions": [
-         d["definition"]
+         "definitions": [
+        d["definition"]
          for m in data[0]["meanings"]
-         for d in m["definitions"]
-         ]
+        for d in m["definitions"]
+          ]
     }
     organize_word = [
-        (f"{key.title()}: {value}")
+          (f"{key.title()}: {value}")
         for key, value in word.items()
     ]
     output = tk.Label(
@@ -61,7 +61,4 @@ def getword():
 button = tk.Button(window, text="Submit", command=getword)
 button.pack()
 
-
-
 window.mainloop()
-
