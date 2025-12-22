@@ -22,8 +22,11 @@ label.pack(
 
 entry = tk.Entry(window)
 entry.pack(pady=10)
-
+output = None
 def getword():
+    global output
+    if output is not None:
+        output.destroy()
     search = entry.get()
     response = requests.get(f"https://api.dictionaryapi.dev/api/v2/entries/en/{search.lower()}")
     if response.status_code != 200:
@@ -57,6 +60,8 @@ def getword():
     output.pack()
 button = tk.Button(window, text="Submit", command=getword)
 button.pack()
+
+
 
 window.mainloop()
 
